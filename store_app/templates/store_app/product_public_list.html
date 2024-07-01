@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/product_public_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2 class="text-center">Todos los Productos</h2>
+    <hr>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-price">{{ product.price }} CUP</p>
+                    <p class="card-stock">{{ product.quantity_available }} disponibles</p>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Ver Detalles</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

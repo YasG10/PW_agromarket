@@ -1,0 +1,27 @@
+<!-- store_app/templates/store_app/daily_sales.html -->
+{% extends 'base_generic.html' %}
+{% block content %}
+<h1>Ventas Diarias</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Total Vendido Hoy ($)</th>
+            <th>Cantidad Vendida</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sale in daily_sales %}
+        <tr>
+            <td>{{ sale.product.name }}</td>
+            <td>{{ sale.total_daily_sales|floatformat:2 }}</td>
+            <td>{{ sale.total_daily_quantity }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No hay ventas hoy.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

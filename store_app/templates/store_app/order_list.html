@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/orders_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+    <h2 class="text-center mb-4">Mis Pedidos</h2>
+    <hr>
+    <br>
+    <div class="table-responsive">
+        <table class="table table-hover table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Comprador</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Direccion de Envio</th>
+                    <th scope="col">Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in object_list %}
+                <tr class="order-row">
+                    <td>{{ order.product.name }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.buyer.username }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.shipping_address }}</td>
+                    <td>
+                        <a href="{% url 'order_update' order.id %}" class="btn btn-outline-primary btn-sm">Actualizar Estado</a>
+                        {% if order.status == "completed" or order.status == "cancelled" %}
+                        <a href="{% url 'order_confirm_delete' order.id %}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/sales_report.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Reporte de Ventas</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Total de Ventas</h5>
+            <p class="card-text">${{ total_sales }}</p>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div class="mt-5">
+        <h3 class="text-center">Ventas por Producto</h3>
+        <div class="row">
+            <div class="col-md-7 chart-container">
+                <canvas id="salesChart" class="img-fluid"></canvas>
+            </div>
+            <div class="col-md-6 chart-container">
+                <canvas id="salesPieChart" class="img-fluid"></canvas>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var products = JSON.parse('{{ products|escapejs }}');
+                var quantities = JSON.parse('{{ quantities|escapejs }}');
+
+                // Gráfico de barras
+                var ctx = document.getElementById('salesChart').getContext('2d');
+                var salesChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: products,
+                        datasets: [{
+                            label: 'Quantity Sold',
+                            data: quantities,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Gráfico de pastel
+                var ctxPie = document.getElementById('salesPieChart').getContext('2d');
+                var salesPieChart = new Chart(ctxPie, {
+                    type: 'pie',
+                    data: {
+                        labels: products,
+                        datasets: [{
+                            label: 'Quantity Sold',
+                            data: quantities,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (tooltipItem) {
+                                        return tooltipItem.label + ': ' + tooltipItem.raw;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+    <br>
+    <hr>
+    <div class="mt-5">
+        <h3 class="text-center">Detalles de Ventas</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad Vendida</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in product_sales %}
+                <tr>
+                    <td>{{ sale.product__name }}</td>
+                    <td>{{ sale.total_quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

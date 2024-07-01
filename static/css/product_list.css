@@ -1,0 +1,79 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
+}
+
+.container-fluid {
+  margin: auto;
+  padding: 0 15px;
+}
+
+h2.text-center {
+  font-size: 2.75rem;
+  /* Aumentar tamaño de la fuente */
+  color: #b85b5b;
+  margin-bottom: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 3px solid #007bff;
+  display: inline-block;
+  padding-bottom: 10px;
+  position: relative;
+  animation: slide-in 1s ease-out;
+}
+
+h2.text-center::before {
+  content: '';
+  width: 50px;
+  height: 5px;
+  background-color: #007bff;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #fff;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.product-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.2rem;
+}

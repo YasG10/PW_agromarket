@@ -1,0 +1,78 @@
+body {
+  background-color: #f9f9f9;  /* Fondo más claro para mayor legibilidad */
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-top: 30px;  /* Espaciado superior ajustado */
+  padding: 0 15px;   /* Padding horizontal para no pegar el contenido a los bordes */
+}
+
+h2.text-center {
+  font-size: 2.5rem;  /* Tamaño ajustado para mejor visualización */
+  color: #004085;  /* Color más suave y profesional */
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;  /* Menos espacio entre letras */
+  position: relative;
+  padding-bottom: 5px;  /* Menos padding para una línea más ajustada */
+}
+
+h2.text-center::after { /* Usando after para un control más preciso */
+  content: '';
+  width: 120px;  /* Línea más larga para un subrayado más destacado */
+  height: 4px;
+  background-color: #007bff;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.card {
+  border-radius: 8px;  /* Bordes más suavizados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Sombra más suave para menos dramatismo */
+  transition: all 0.2s ease-in-out;  /* Transición más rápida y suave */
+}
+
+.card:hover {
+  transform: scale(1.02);  /* Escala sutil al hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #007bff;
+}
+
+.card-text {
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 1.1rem;  /* Tamaño de fuente más coherente */
+  color: #b12704;  /* Color distintivo para el precio */
+}
+
+.btn-primary, .btn-danger {
+  padding: 8px 16px;  /* Tamaño más manejable para el botón */
+  font-size: 0.9rem;  /* Fuente más pequeña para botones */
+  border-radius: 4px;  /* Bordes menos pronunciados */
+}
+
+.btn-primary:hover, .btn-danger:hover {
+  transform: translateY(-2px);  /* Menos desplazamiento para un efecto más sutil */
+}
+
+.mt-5 {
+  margin-top: 4rem;  /* Ajuste de márgenes para mayor claridad visual */
+}

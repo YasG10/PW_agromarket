@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">My Cart</h2>
+    <hr>
+    <div class="row justify-content-center">
+        {% for item in object_list %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="{{ item.product.image.url }}" class="card-img" alt="{{ item.product.name }}" style="height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.product.name }}</h5>
+                                <p class="card-text"><strong>Quantity:</strong> {{ item.quantity }}</p>
+                                <p class="card-text price"><strong>Price:</strong> {{ item.product.price }} USD</p>
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'cart_delete' item.id %}" class="btn btn-danger">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+        <form action="{% url 'order_create' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Checkout</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

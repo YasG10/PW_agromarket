@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/product_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+    <h2 class="text-center mb-4">Mis Productos</h2>
+    <hr>
+    <div class="mb-3 text-left">
+        <a href="{% url 'product_add' %}" class="btn btn-outline-primary">Add New Product</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad Disponible</th>
+                    <th scope="col">Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in object_list %}
+                <tr class="product-row">
+                    <td><img src="{{ product.image.url }}" class="product-img" alt="{{ product.name }}"></td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }} CUP</td>
+                    <td>{{ product.quantity_available }}</td>
+                    <td>
+                        <a href="{% url 'product_edit' product.id %}"
+                            class="btn btn-sm btn-outline-secondary">Editar</a>
+                        <a href="{% url 'product_delete' product.id %}"
+                            class="btn btn-sm btn-outline-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

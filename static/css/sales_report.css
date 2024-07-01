@@ -1,0 +1,51 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px;
+}
+
+h2.text-center, h3.text-center {
+    font-size: 2rem;  /* Ajuste para consistencia */
+    color: #004085;  /* Un color sutil y profesional */
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.card-title {
+    color: #007bff;
+}
+
+.card-text {
+    font-size: 1.5rem;  /* Más grande para enfatizar las cifras importantes */
+    color: #000;
+}
+
+.table {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+thead.thead-light th {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.chart-container {
+    padding: 10px;
+}

@@ -1,0 +1,76 @@
+<!-- Asegúrate de que la base_generic.html contiene el elemento <head> adecuado y que Chart.js está siendo cargado correctamente -->
+{% extends 'base_generic.html' %}
+{% block content %}
+<h1>Productos Más Vendidos</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="chart-container" style="position: relative;">
+                <canvas id="trendingProductsChart" class="w-100"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad Vendida</th>
+            <th>Total Ventas ($)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in top_products %}
+        <tr>
+            <td>{{ product.product__name }}</td>
+            <td>{{ product.total_quantity }}</td>
+            <td>{{ product.total_sales|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No hay datos de productos más vendidos.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('trendingProductsChart').getContext('2d');
+        const labels = ["{% for product in top_products %}","{{ product.product__name|escapejs }}","{% if not forloop.last %}, {% endif %}{% endfor %}"];
+        const quantityData = ["{% for product in top_products %}","{{ product.total_quantity }}","{% if not forloop.last %}, {% endif %}{% endfor %}"];
+        const salesData = ["{% for product in top_products %}","{{ product.total_sales|floatformat:2 }}","{% if not forloop.last %}, {% endif %}{% endfor %}"];
+    
+
+    const trendingProductsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Cantidad Vendida',
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                data: quantityData
+            }, {
+                label: 'Total Ventas ($)',
+                backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1,
+                data: salesData
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    });
+</script>
+
+{% endblock %}

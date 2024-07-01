@@ -1,0 +1,89 @@
+/* General body styles */
+body {
+    background-color: #f4f4f7;  /* Un fondo más suave que el blanco */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más moderna y limpia */
+    color: #333;
+}
+
+/* Container to center the form */
+.container {
+    padding: 20px;
+}
+
+/* Styling the card containing the form */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave y difusa */
+    transition: box-shadow 0.3s ease-in-out, transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Efecto hover más dramático */
+}
+
+.card-header {
+    background-color: #a0c0e2; /* Un azul más oscuro para más elegancia */
+    color: #fff;
+    font-size: 1.75rem; /* Más grande para destacar */
+}
+
+.card-body {
+    padding: 2rem; /* Más espacio interior */
+}
+
+/* Styling form fields for a consistent and modern look */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+    border-color: #0056b3; /* Foco en azul para mantener la coherencia */
+    outline: none;
+}
+
+/* Button styles for interaction */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra al hacer hover */
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional styling for centering text and elements */
+.text-center {
+    text-align: center;
+}

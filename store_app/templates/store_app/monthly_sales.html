@@ -1,0 +1,27 @@
+<!-- store_app/templates/store_app/monthly_sales.html -->
+{% extends 'base_generic.html' %}
+{% block content %}
+<h1>Ventas Mensuales</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Total Vendido Este Mes ($)</th>
+            <th>Cantidad Vendida Este Mes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sale in monthly_sales %}
+        <tr>
+            <td>{{ sale.product.name }}</td>
+            <td>{{ sale.total_monthly_sales|floatformat:2 }}</td>
+            <td>{{ sale.total_monthly_quantity }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No hay ventas este mes.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

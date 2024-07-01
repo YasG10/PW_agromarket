@@ -1,0 +1,21 @@
+<!-- product_search.html -->
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Búsqueda de Productos</h2>
+<form method="get">
+    {{ search_form.as_p }}
+    <button type="submit">Buscar</button>
+</form>
+
+{% if products %}
+<ul>
+    {% for product in products %}
+    <li>{{ product.name }} - ${{ product.price }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encontraron productos.</p>
+{% endif %}
+{% endblock %}
